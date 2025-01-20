@@ -1,22 +1,32 @@
 package exercise;
 
+import java.util.Map;
+
 // BEGIN
 public class Tag {
-    public final String startTag;
-    public final String endTag;
+    public String tag;
+    public Map<String, String> map;
 
-
-    public Tag() {
-        startTag = "<";
-        endTag = ">";
+    public Tag(String tag, Map<String, String> map) {
+        this.tag = tag;
+        this.map = map;
     }
 
-    public String startTag() {
-        return startTag;
+    public String format() {
+        String line = "";
+        var entries = map.entrySet();
+        for (var entry : entries) {
+            line = line + String.format(" %s=\"%s\"", entry.getKey(), entry.getValue());
+        }
+        return line;
     }
 
-    public String endTag() {
-        return endTag;
+    public String toString() {
+        return "<" + tag + format() + ">";
+    }
+
+    public String getTag() {
+        return tag;
     }
 }
 // END
