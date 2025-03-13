@@ -1,10 +1,9 @@
 package exercise.model;
 
-import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
+
 @Setter
 @ToString
 public final class User {
@@ -21,5 +20,21 @@ public final class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

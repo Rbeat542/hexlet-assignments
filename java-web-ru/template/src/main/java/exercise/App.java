@@ -31,9 +31,13 @@ public final class App {
         app.get("/users/{id}", ctx -> {
             var id = ctx.pathParamAsClass("id", Integer.class).get();
             if (USERS.size() >= id) {
-                var user = USERS.get(id);
-                var page = new UserPage(user);
-                ctx.render("users/show.jte", model("page", page));
+                for (var user:USERS) {
+                    if (user.getId() == id) {
+                        var page = new UserPage(user);
+                        ctx.render("users/show.jte", model("page", page));
+                    }
+                }
+
             } else {
                 throw new NotFoundResponse("User not found"); }
         });
