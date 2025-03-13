@@ -1,7 +1,6 @@
 package exercise;
 
 import io.javalin.Javalin;
-//import gg.jte.TemplateEngine;
 import io.javalin.rendering.template.JavalinJte;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import io.javalin.http.NotFoundResponse;
