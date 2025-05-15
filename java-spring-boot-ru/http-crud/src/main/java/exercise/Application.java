@@ -28,11 +28,12 @@ public class Application {
 
     // BEGIN
     @GetMapping("/posts")
-    public List<Post> index(@RequestParam(defaultValue = "4") Integer pageCount, @RequestParam(defaultValue = "2") Integer limit){
+    public List<Post> index(@RequestParam(defaultValue = "4") Integer page,
+                            @RequestParam(defaultValue = "2") Integer limit) {
         if (limit > 0) {
-            var pagesTotal = Math.ceil (posts.size() / limit);
-            Integer startIndex = (pageCount-1) * limit;
-            Integer endIndex = pageCount * limit;
+            var pagesTotal = Math.ceil(posts.size() / limit);
+            Integer startIndex = (page - 1) * limit;
+            Integer endIndex = page * limit;
             return posts.subList(startIndex, endIndex);
         }
         return posts;
@@ -65,8 +66,8 @@ public class Application {
         return newPost;
     }
 
-    @PostMapping("/posts/{id}")
-    public void delete(@PathVariable String id) {
+    @DeleteMapping("/posts/{id}")
+    public void destroy(@PathVariable String id) {
         posts.removeIf(p -> p.getId().equals(id));
     }
     // END
