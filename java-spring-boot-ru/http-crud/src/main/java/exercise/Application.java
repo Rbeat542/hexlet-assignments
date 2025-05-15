@@ -49,10 +49,7 @@ public class Application {
 
     @PostMapping("/posts")
     public Post createPost(@RequestBody Post post) {
-        System.out.println("Try to add post with id : " + post.getId());
         posts.add(post);
-        System.out.println("Added post with id : " + post.getId());
-        System.out.println("Size now: " + posts.size());
         return post;
     }
 
@@ -65,8 +62,8 @@ public class Application {
             Post post = postFound.get();
             post.setBody(newPost.getBody());
             post.setTitle(newPost.getTitle());
-            return post;
         }
+        return newPost;
     }
 
     @DeleteMapping("/posts/{id}")
