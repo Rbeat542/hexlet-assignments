@@ -65,8 +65,8 @@ public class Application {
             Post post = postFound.get();
             post.setBody(newPost.getBody());
             post.setTitle(newPost.getTitle());
+            return post;
         }
-        return post;
     }
 
     @DeleteMapping("/posts/{id}")
