@@ -28,9 +28,9 @@ public class Application {
 
     // BEGIN
     @GetMapping("/posts")
-    public List<Post> index(@RequestParam(defaultValue = "4") Integer page,
-                            @RequestParam(defaultValue = "2") Integer limit) {
-        if (limit > 0) {
+    public List<Post> index(@RequestParam(defaultValue = "1") Integer page,
+                            @RequestParam(defaultValue = "99") Integer limit) {
+        if ((limit > 0) && limit <= posts.size()) {
             var pagesTotal = Math.ceil(posts.size() / limit);
             Integer startIndex = (page - 1) * limit;
             Integer endIndex = page * limit;
@@ -48,8 +48,11 @@ public class Application {
     }
 
     @PostMapping("/posts")
-    public Post createPost(@RequestParam Post post) {
+    public Post createPost(@RequestBody Post post) {
+        System.out.println("Try to add post with id : " + post.getId());
         posts.add(post);
+        System.out.println("Added post with id : " + post.getId());
+        System.out.println("Size now: " + posts.size());
         return post;
     }
 
@@ -63,7 +66,7 @@ public class Application {
             post.setBody(newPost.getBody());
             post.setTitle(newPost.getTitle());
         }
-        return newPost;
+        return post;
     }
 
     @DeleteMapping("/posts/{id}")
