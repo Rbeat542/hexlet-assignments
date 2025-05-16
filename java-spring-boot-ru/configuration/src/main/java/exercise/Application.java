@@ -27,9 +27,6 @@ public class Application {
     @GetMapping("admins")
     public List<String> getAdmins() {
         List<User> admins = new ArrayList<User>();
-        /*for (var i : adminInfo.getAdmins()) {
-            admins.add(i);
-        }*/
         admins = users.stream()
                 .filter(p -> adminInfo.getAdmins().toString().contains(p.getEmail()))
                 .toList();
