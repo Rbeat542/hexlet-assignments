@@ -55,7 +55,6 @@ public class ProductsController {
         var product = productMapper.map(data);
         productRepository.save(product);
         return productMapper.map(product);
-
     }
 
     @PutMapping(path = "/{id}")
@@ -67,6 +66,5 @@ public class ProductsController {
         productRepository.save(result);
         return productMapper.map(result);
     }
-
     // END
 }
